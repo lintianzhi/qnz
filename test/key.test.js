@@ -8,6 +8,7 @@ qiniu.conf.setConf({accessKey:process.env.QINIU_ACCESS_KEY,
 
 var imgFile = path.join(__dirname, 'gogopher.jpg');
 var bucket1 = qiniu.bucket(process.env.QINIU_TEST_BUCKET, {dnHost: process.env.QINIU_TEST_DOMAIN});
+var prefix = '';
 
 before(function(done) {
   if (!process.env.QINIU_ACCESS_KEY) {
@@ -40,6 +41,14 @@ describe('test start', function() {
       });
     });
 
+    it('upload file(no such file)', function(done) {
+      var key = bucket1.key(r());
+      key.putFile('no such file', function(err, ret) {
+        err.code.should.equal(-1);
+        done();
+      });
+    });
+
     it('upload', function(done) {
       var key = bucket1.key(r());
       key.put(r(), function(err, ret) {
@@ -49,9 +58,9 @@ describe('test start', function() {
       });
     });
 
-    it('upload with token', function(done) {
+    it('upload with bucket token', function(done) {
       var key = bucket1.key(r());
-      var token = key.upToken(1800);
+      var token = bucket1.upToken(1800);
       key.put(r(), token)
         .then(function() {
           keys.push(key);
@@ -59,7 +68,7 @@ describe('test start', function() {
         }, should.not.exist);
     });
     
-    it('rs', function(done) {
+    it('rs stat&move&copy&remove', function(done) {
       var rskey1 = bucket1.key(r());
       rskey.stat()
         .then(function(ret) {
@@ -116,18 +125,21 @@ describe('test start', function() {
         should.not.exist(err);
         items = _.union(items, ret.items);
         if (ret.marker) {
-          bucket1.list(callback);
+          bucket1.list({prefix: prefix}, callback);
         } else {
           items.length.should.equal(keys.length);
           done();
         };
       }
-      bucket1.list(callback);
+      bucket1.list({prefix: prefix}, callback);
     });
   });
 
 });
 
 function r() {
-  return Math.random(1000) + '';
+  if (prefix == '') {
+    prefix = Math.floor(Math.random(1000)*10000) + '';
+  }
+  return prefix + Math.random(1000);
 }
