@@ -7,7 +7,7 @@ qiniu.conf.setConf({accessKey:process.env.QINIU_ACCESS_KEY,
                     secretKey:process.env.QINIU_SECRET_KEY});
 
 var imgFile = path.join(__dirname, 'gogopher.jpg');
-var bucket1 = qiniu.bucket(process.env.QINIU_TEST_BUCKET, {dnHost: process.env.QINIU_TEST_DOMAIN});
+var bucket1 = qiniu.bucket(process.env.QINIU_TEST_BUCKET, {dnHost: process.env.QINIU_TEST_DOMAIN, isPublic: false});
 var prefix = '';
 
 before(function(done) {
@@ -115,6 +115,36 @@ describe('test start', function() {
           keys = _.union(keys, keys1);
           done();
         }, should.not.exist);
+    });
+  });
+
+  describe('test fop', function() {
+    var imgKey = bucket1.key(r());
+    before(function(done) {
+      imgKey.putFile(imgFile, function(err, ret) {
+        should.not.exist(err);
+        done();
+      });
+    });
+    after(function(done) {
+      keys.push(imgKey);
+      done();
+    });
+
+    it('imageInfo', function(done) {
+      imgKey.imageInfoCall(function(err, ret) {
+        should.not.exist(err);
+        ret.should.have.keys('width', 'height', 'format', 'colorModel');
+        done();
+      });
+    });
+
+    it('exif', function(done) {
+      imgKey.exifCall(function(err, ret) {
+        should.not.exist(err);
+        ret.should.be.type('object');
+        done();
+      });
     });
   });
 
