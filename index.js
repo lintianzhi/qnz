@@ -6,4 +6,5 @@ module.exports = {
   bucket: require(libpath + '/bucket.js').bucket,
   conf: require(libpath + '/conf.js'),
   key: require(libpath + '/key.js'),
+  rpc: require(libpath + '/rpc.js'),
 };

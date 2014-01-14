@@ -1,6 +1,6 @@
 {
-  "name": "qiniu",
-  "version": "6.0.0",
+  "name": "qnz",
+  "version": "1.0.0",
   "description": "Node wrapper for Qiniu Resource (Cloud) Storage API",
   "main": "index.js",
   "directories": {
@@ -20,10 +20,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/qiniu/nodejs-sdk.git"
+    "url": "git://github.com/lintianzhi/qnz.git"
   },
   "bugs": {
-    "url": "https://github.com/qiniu/nodejs-sdk/issues"
+    "url": "https://github.com/lintianzhi/qnz/issues"
   },
   "keywords": [
     "cloud",
@@ -32,20 +32,8 @@
     "qiniu",
     "web-service"
   ],
-  "author": "qiniutek.com",
+  "author": "qiniu.com",
   "contributors": [
-    {
-      "name": "Xu Shiwei",
-      "email": "xushiweizh@gmail.com"
-    },
-    {
-      "name": "why404",
-      "email": "awhy.xu@gmail.com"
-    },
-    {
-      "name": "ikbear",
-      "email": "sunikbear@gmail.com"
-    },
     {
       "name": "lintianzhi",
       "email": "lintianzhi1992@gmail.com"
