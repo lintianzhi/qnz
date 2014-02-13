@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+- 0.1
+- 0.8
+- 0.6
+before_script:
+- export QINIU_ACCESS_KEY="nnwjTeUgpQdfZp9cb4-iHK0EUlebKCNk4kXwoStq"
+- export QINIU_SECRET_KEY="Ia9pXC-XEcGF6hvu1V5fdRhwFLpeUkCbt0Gxk5NW"
+- export QINIU_TEST_BUCKET="test741"
+- export QINIU_TEST_DOMAIN="test741.qiniudn.com"
+deploy:
+  provider: npm
+  email: lintianzhi1992@gmail.com
+  api_key:
+    secure: a59FfQp8fSIg0o2sLVmh0415wIlnObRreb8Vv2rc4oQVqux6hhORgqtHedt5By+rI9YPfPAvhdshZSpfTc/LvJ7d2kyhhMQ3o1kxsrtjTcRn54aEMefWMALxYamUnLMNE4H1CxHJYW8qTrl4Ldvw75Mp4R9Zlrvu+52jIkJgvRw=
+  on:
+    repo: lintianzhi/qnz
+    branch: develop
