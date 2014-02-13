@@ -118,52 +118,52 @@ describe('test start', function() {
     });
   });
 
-  describe('test fop', function() {
-    var imgKey = bucket1.key(r());
-    before(function(done) {
-      imgKey.putFile(imgFile, function(err, ret) {
-        should.not.exist(err);
-        done();
-      });
-    });
-    after(function(done) {
-      keys.push(imgKey);
-      done();
-    });
-
-    it('imageInfo', function(done) {
-      imgKey.imageInfoCall(function(err, ret) {
-        should.not.exist(err);
-        ret.should.have.keys('width', 'height', 'format', 'colorModel');
-        done();
-      });
-    });
-
-    it('exif', function(done) {
-      imgKey.exifCall(function(err, ret) {
-        should.not.exist(err);
-        ret.should.be.type('object');
-        done();
-      });
-    });
-  });
-
-  describe('test bucket', function() {
-    it('list all', function(done) {
-      var items = [];
-      var callback = function(err, ret) {
-        should.not.exist(err);
-        items = _.union(items, ret.items);
-        if (ret.marker) {
-          bucket1.list({prefix: prefix}, callback);
-        } else {
-          items.length.should.equal(keys.length);
-          done();
-        };
-      }
-      bucket1.list({prefix: prefix}, callback);
-    });
-  });
+//  describe('test fop', function() {
+//    var imgKey = bucket1.key(r());
+//    before(function(done) {
+//      imgKey.putFile(imgFile, function(err, ret) {
+//        should.not.exist(err);
+//        done();
+//      });
+//    });
+//    after(function(done) {
+//      keys.push(imgKey);
+//      done();
+//    });
+//
+//    it('imageInfo', function(done) {
+//      imgKey.imageInfoCall(function(err, ret) {
+//        should.not.exist(err);
+//        ret.should.have.keys('width', 'height', 'format', 'colorModel');
+//        done();
+//      });
+//    });
+//
+//    it('exif', function(done) {
+//      imgKey.exifCall(function(err, ret) {
+//        should.not.exist(err);
+//        ret.should.be.type('object');
+//        done();
+//      });
+//    });
+//  });
+//
+//  describe('test bucket', function() {
+//    it('list all', function(done) {
+//      var items = [];
+//      var callback = function(err, ret) {
+//        should.not.exist(err);
+//        items = _.union(items, ret.items);
+//        if (ret.marker) {
+//          bucket1.list({prefix: prefix}, callback);
+//        } else {
+//          items.length.should.equal(keys.length);
+//          done();
+//        };
+//      }
+//      bucket1.list({prefix: prefix}, callback);
+//    });
+//  });
 
 });
 
