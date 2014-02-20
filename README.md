@@ -10,36 +10,39 @@
 $ npm install qnz
 ```
 
-## 
+## API DOC
+### 目录
 
-- [bucket](#bucket)
-	- [bucket.attr](#bucket.attr)
-	- [bucket.key](#bucket.key)
-	- [bucket.upToken](#bucket.upToken)
-	- [bucket.list](#bucket.list)
+- [bucket(bucketName, opts)](#bucket)
+	- [bucket.key(keyName)](#bucket.key)
+	- [bucket.upToken([expire], [putPolicy)]](#bucket.upToken)
+	- [bucket.list([opts], [onret])](#bucket.list)
 - [key](#key)
-	- [key.attr](#key.attr)
-	- [key.upToken](#key.upToken)
-	- [key.put](#key.put)
-	- [key.putFile](#key.putFile)
-	- [key.url](#key.url)
-	- [key.access](#key.access)
-	- [key.pubUrl](#key.pubUrl)
-	- [key.stat](#key.stat)
-	- [key.remove](#key.remove)
-	- [key.move](#key.move)
-	- [key.copy](#key.copy)
-	- [key.imageInfoUrl](#key.imageInfoUrl)
-	- [key.imageInfoCall](#key.imageInfoCall)
-	- [key.exifUrl](#key.exifUrl)
-	- [key.exifCall](#key.exifCall)
-	- [key.pfop](#key.pfop)
+	- [key.upToken([expire], [putPolicy])](#key.upToken)
+	- [key.put(body, [extra], [upToken], [onret])](#key.put)
+	- [key.putFile(path, [extra], [upToken], [onret])](#key.putFile)
+	- [key.url([expire])](#key.url)
+	- [key.stat([onret])](#key.stat)
+	- [key.remove([onret])](#key.remove)
+	- [key.move(dstkey, [onret])](#key.move)
+	- [key.copy(dstKey, [onret])](#key.copy)
+	- [key.imageInfoUrl()](#key.imageInfoUrl)
+	- [key.imageInfoCall([onret])](#key.imageInfoCall)
+	- [key.exifUrl()](#key.exifUrl)
+	- [key.exifCall[onret]](#key.exifCall)
+	- [key.pfop(fops, [opts], [onret])](#key.pfop)
 - [batch](#batch)
-	- [batch.attr](#batch.attr)
-	- [batch.stat](#batch.stat)
-	- [batch.remove](#batch.remove)
-	- [batch.copy](#batch.copy)
-	- [batch.move](#batch.move)
+	- [batch.stat(keys, [onret])](#batch.stat)
+	- [batch.remove(keys, [onret])](#batch.remove)
+	- [batch.copy(keyPairs, [onret])](#batch.copy)
+	- [batch.move(keyPairs, [onret])](#batch.move)
+
+### 内容
+<a name="bucket"></a>
+
+
+### DEMO
+
 
 ## 许可证
 

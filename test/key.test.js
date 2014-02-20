@@ -147,15 +147,8 @@ describe('test start', function() {
       });
     });
 
-    it('util.error', function(done) {
-      imgKey.pfop({}, function(err, ret) {
-        err.code.should.equal(-1);
-        done()
-      });
-    });
-
     it('pfop', function(done) {
-      imgKey.pfop({fops: 'exif', force: true}, function(err, ret) {
+      imgKey.pfop('exif', {force: true}, function(err, ret) {
         should.not.exist(err);
         ret.should.be.type('object');
         ret.should.have.keys('persistentId');
