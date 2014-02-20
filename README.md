@@ -15,7 +15,7 @@ $ npm install qnz
 
 - [bucket(bucketName, opts)](#bucket)
 	- [bucket.key(keyName)](#bucket.key)
-	- [bucket.upToken([expire], [putPolicy)]](#bucket.upToken)
+	- [bucket.upToken([expire], [putPolicy])](#bucket.upToken)
 	- [bucket.list([opts], [onret])](#bucket.list)
 - [key](#key)
 	- [key.upToken([expire], [putPolicy])](#key.upToken)
@@ -29,7 +29,7 @@ $ npm install qnz
 	- [key.imageInfoUrl()](#key.imageInfoUrl)
 	- [key.imageInfoCall([onret])](#key.imageInfoCall)
 	- [key.exifUrl()](#key.exifUrl)
-	- [key.exifCall[onret]](#key.exifCall)
+	- [key.exifCall([onret])](#key.exifCall)
 	- [key.pfop(fops, [opts], [onret])](#key.pfop)
 - [batch](#batch)
 	- [batch.stat(keys, [onret])](#batch.stat)
