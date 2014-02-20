@@ -67,7 +67,7 @@ describe('test start', function() {
           done();
         }, should.not.exist);
     });
-    
+
     it('rs stat&move&copy&remove', function(done) {
       var rskey1 = bucket1.key(r());
       rskey.stat()
@@ -143,6 +143,22 @@ describe('test start', function() {
       imgKey.exifCall(function(err, ret) {
         should.not.exist(err);
         ret.should.be.type('object');
+        done();
+      });
+    });
+
+    it('util.error', function(done) {
+      imgKey.pfop({}, function(err, ret) {
+        err.code.should.equal(-1);
+        done()
+      });
+    });
+
+    it('pfop', function(done) {
+      imgKey.pfop({fops: 'exif', force: true}, function(err, ret) {
+        should.not.exist(err);
+        ret.should.be.type('object');
+        ret.should.have.keys('persistentId');
         done();
       });
     });
