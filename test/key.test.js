@@ -2,6 +2,7 @@ var qiniu = require('../');
 var _ = require('underscore');
 var should = require('should');
 var path = require('path');
+var sleep = require('sleep');
 
 qiniu.conf.setConf({accessKey:process.env.QINIU_ACCESS_KEY,
                     secretKey:process.env.QINIU_SECRET_KEY});
@@ -61,11 +62,11 @@ describe('test start', function() {
     it('upload with bucket token', function(done) {
       var key = bucket1.key(r());
       var token = bucket1.upToken(1800);
-      key.put(r(), token)
-        .then(function() {
-          keys.push(key);
-          done();
-        }, should.not.exist);
+      key.put(r(), token, function(err, ret) {
+        should.not.exist(err);
+        keys.push(key);
+        done();
+      });
     });
 
     it('rs stat&move&copy&remove', function(done) {
@@ -105,16 +106,17 @@ describe('test start', function() {
       for (var i in keys) {
         keys1.push(bucket1.key(r()));
       }
+      sleep.sleep(3);
       var keyPairs0 = _.zip(keys, keys1);
       var keyPairs1 = _.zip(keys1, keys);
       batch.move(keyPairs0)
-        .then(function() {
-          return batch.copy(keyPairs1);
-        })
-        .then(function() {
-          keys = _.union(keys, keys1);
-          done();
-        }, should.not.exist);
+      .then(function() {
+        return batch.copy(keyPairs1);
+      })
+      .then(function() {
+        keys = _.union(keys, keys1);
+        done();
+      }, should.not.exist);
     });
   });
 
