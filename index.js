@@ -7,4 +7,5 @@ module.exports = {
   conf: require(libpath + '/conf.js'),
   key: require(libpath + '/key.js'),
   rpc: require(libpath + '/rpc.js'),
+  util: require(libpath + '/util.js')
 };
